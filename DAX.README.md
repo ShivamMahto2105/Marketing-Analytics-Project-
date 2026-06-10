@@ -5,6 +5,18 @@
 5 Number of Customer Reviews = DISTINCTCOUNT(fact_customer_review[ReviewID]) 
 6 Rating(Average) = AVERAGE(fact_customer_review[Rating])
 7 Views = SUM(fact_engagement_data[Views])
+8 Conversion Rate = 
+VAR TotalVisitors = CALCULATE( COUNT (fact_customer_journey[JourneyID]) , fact_customer_journey[Action] = "View" )
+VAR TotalPurchases = CALCULATE(
+    COUNT(fact_customer_journey[JourneyID]),
+    fact_customer_journey[Action] = "Purchase"
+)
+RETURN
+IF(
+    TotalVisitors = 0, 
+    0, 
+    DIVIDE(TotalPurchases, TotalVisitors)
+)
 
 
 ## Calendar DAX 
