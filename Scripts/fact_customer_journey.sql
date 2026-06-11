@@ -57,4 +57,4 @@ FROM
             dbo.customer_journey  -- Specifies the source table from which to select the data
     ) AS subquery  -- Names the subquery for reference in the outer query
 WHERE 
-    row_num = 1;  -- Keeps only the first occurrence of each duplicate group identified in the subquery
+    row_num = 1;  -- Keeps only the first occurrence of each duplicate group identified in the  
